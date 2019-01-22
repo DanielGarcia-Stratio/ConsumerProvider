@@ -27,7 +27,7 @@ public class ConsumerController {
     headers.add("Content-Type","application/json");
 
     ResponseEntity<String> responseEntity = restTemplate.exchange(
-            "http://localhost:8080/visits?code=" + visit,
+            "http://localhost:8083/visits?code=" + visit,
             HttpMethod.GET,
             new HttpEntity<>(headers),
             String.class);

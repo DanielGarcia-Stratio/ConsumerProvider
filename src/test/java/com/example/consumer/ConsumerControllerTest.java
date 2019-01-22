@@ -23,31 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureJsonTesters
 @AutoConfigureStubRunner(
         stubsMode = StubRunnerProperties.StubsMode.LOCAL,
-        ids = "com.example:provider:+:stubs:8085"
+        ids = "com.example:provider:0.0.1-SNAPSHOT:stubs:8083"
 )
 public class ConsumerControllerTest {
-    private final String  body= "{\n" +
-            "  \"patientInfo\":{\n" +
-            "    \"name\": \"Pepe\",\n" +
-            "    \"firstSurname\":\"Florez\",\n" +
-            "    \"secondSurname\":\"Garcia\",\n" +
-            "    \"gender\": \"male\",\n" +
-            "    \"medicalHistory\":\"XDSSI\",\n" +
-            "    \"VIP\" : false\"\n" +
-            "  },\n" +
-            "  \"visitStatus\": \"done\",\n" +
-            "  \"scheduledTime\": \"2010-06-15T00:00:00\",\n" +
-            "  \"arrivalTime\": \"2010-06-15T02:00:00\",\n" +
-            "  \"agenda\": \"XDD\",\n" +
-            "  \"center\": \"Moraleja\",\n" +
-            "  \"resource\": \"EF\",\n" +
-            "  \"service\": \"enfermeria\",\n" +
-            "  \"visitType\": \"revision\",\n" +
-            "  \"insurance\": \"Sanitas SA\",\n" +
-            "  \"observation\": \"Ha sufrido anteriormente de neumonia\",\n" +
-            "  \"visitChannel\": \"videollamada\",\n" +
-            "  \"overload\": false\n" +
-            "}";
+    private final String  body= "{\"insurance\":\"Sanitas SA\",\"scheduledTime\":\"2010-06-15T00:00:00\",\"comments\":\"Ha sufrido anteriormente de neumonia\",\"resource\":\"EF Maria Gimenez Navarro\",\"center\":\"Moraleja\",\"agenda\":\"XDD\",\"overload\":false,\"visitType\":\"revision\",\"visitChannel\":\"videollamada\",\"visitStatus\":\"scheduled\",\"arrivalTime\":\"2010-06-15T02:00:00\",\"service\":\"enfermeria\",\"patientInfo\":{\"gender\":\"male\",\"name\":\"Pepe\",\"secondSurname\":\"Garcia\",\"VIP\":false,\"medicalHistory\":\"XDSSI\",\"firstSurname\":\"Florez\"}}";
     @Autowired
     private MockMvc mockMvc;
     @Test
@@ -59,4 +38,5 @@ public class ConsumerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(body));
     }
+
 }
